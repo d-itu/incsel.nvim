@@ -1,4 +1,4 @@
----@type table<integer, TSNode>
+---@type TSNode[]
 local stack = {}
 
 local function register_cleanup()

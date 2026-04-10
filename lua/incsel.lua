@@ -65,6 +65,7 @@ local function init_visual_selection()
   local p = vim.treesitter.get_node { pos = get_pos() }
   vim.cmd "normal! o"
   local q = vim.treesitter.get_node { pos = get_pos() }
+  vim.cmd "normal! o"
 
   local node = common_ancestor(p, q)
   if not node then return false end
@@ -74,6 +75,7 @@ local function init_visual_selection()
   return true
 end
 
+--- return true if nodes selected
 ---@return boolean
 local function init_selection()
   local node = vim.treesitter.get_node()
@@ -96,23 +98,25 @@ local function larger_parent(node)
   return parent
 end
 
----@return boolean
 local function incremental()
   local node = get_node()
   if not node then return init_visual_selection() end
   local node = larger_parent(node)
-  if not node then return false end
-  push_node(node)
-  update_selection(node)
+  if node then
+    push_node(node)
+    update_selection(node)
+  end
   return true
 end
 
----@return boolean
 local function decremental()
+  if #stack == 0 then return false end
+  if #stack == 1 then return true end
   pop_node()
   local node = get_node()
-  if not node then return false end
-  update_selection(node)
+  if node then
+    update_selection(node)
+  end
   return true
 end
 

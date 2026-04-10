@@ -107,11 +107,13 @@ local function incremental()
   return true
 end
 
+---@return boolean
 local function decremental()
   pop_node()
   local node = get_node()
-  if not node then return end
+  if not node then return false end
   update_selection(node)
+  return true
 end
 
 return {

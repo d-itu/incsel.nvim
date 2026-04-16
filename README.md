@@ -32,23 +32,17 @@ Here is an example:
 local incsel = require "incsel"
 vim.keymap.set('n', '<CR>', function()
   if not incsel.init_selection() then
-    vim.cmd "normal \r\n"
+    vim.cmd "normal! \r\n"
   end
-end, {
-  desc = "Start selecting nodes with nvim-treesitter"
-})
+end, { desc = "Start selecting nodes with nvim-treesitter" })
 vim.keymap.set('x', '<CR>', function()
   if not incsel.incremental() then
-    vim.cmd "normal \r\n"
+    vim.cmd "normal! \r\n"
   end
-end, {
-  desc = "Increment selection to named node"
-})
+end, { desc = "Increment selection to named node" })
 vim.keymap.set('x', '<BS>', function()
   if not incsel.decremental() then
-    vim.cmd "normal \x1b"
+    vim.cmd "normal \b"
   end
-end, {
-  desc = "Shrink selection to previous named node"
-})
+end, { desc = "Shrink selection to previous named node" })
 ```

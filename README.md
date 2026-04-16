@@ -2,6 +2,10 @@
 
 Bring back `incremental_selection` of [`nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter/tree/master)
 
+> [!NOTE]
+> Neovim has builtin incremental selection since `v0.12`.
+> Please check [:h treesitter-incremental-selection](https://neovim.io/doc/user/treesitter/#treesitter-incremental-selection)
+
 ## Installation
 
 ### vim.pack
@@ -28,7 +32,7 @@ This plugin can be lazily loaded.
 This plugin has no `setup`. It contains some functions which you can bind to your preferred keys.
 Here is an example:
 
-``` lua
+```lua
 local incsel = require "incsel"
 vim.keymap.set('n', '<CR>', function()
   if not incsel.init_selection() then
